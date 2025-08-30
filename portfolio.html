@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Beautiful colorful gradient background */
+            background: linear-gradient(135deg, #e3e8ff 0%, #f7d358 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, #2d3eec 60%, #15219e 100%);
+            color: #fff;
+            padding: 50px 0 30px 0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 32px #2d3eec44;
+        }
+        header h1 {
+            font-size: 3em;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 12px #15219e88;
+            animation: popIn 1s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        nav {
+            margin-top: 25px;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 18px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.2s, text-shadow 0.2s;
+            text-shadow: 1px 1px 6px #2d3eec88;
+            position: relative;
+        }
+        nav a:after {
+            content: '';
+            display: block;
+            margin: 0 auto;
+            width: 0;
+            height: 2px;
+            background: #f7d358;
+            transition: width .3s;
+        }
+        nav a:hover {
+            color: #f7d358;
+            text-shadow: 0 2px 12px #fff;
+        }
+        nav a:hover:after {
+            width: 100%;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px #b3b3e6;
+            padding: 50px 40px;
+            position: relative;
+            z-index: 1;
+        }
+        section {
+            margin-bottom: 40px;
+            perspective: 800px;
+        }
+        h2 {
+            color: #2d3eec;
+            margin-bottom: 18px;
+            font-size: 2em;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 8px #e3e8ff;
+        }
+        .skills, .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .skill, .project {
+            background: linear-gradient(120deg, #e1fac7 70%, #b52121 100%);
+            padding: 18px 28px;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px #2d3eec22, 0 1.5px 0 #fff inset;
+            font-weight: bold;
+            font-size: 1.1em;
+            min-width: 120px;
+            min-height: 60px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            position: relative;
+        }
+        .skill:hover, .project:hover {
+            transform: rotateY(15deg) scale(1.07);
+            box-shadow: 0 8px 32px #2d3eec55, 0 1.5px 0 #fff inset;
+            background: linear-gradient(120deg, #f7d358 60%, #e3e8ff 100%);
+            color: #15219e;
+        }
+        .project b {
+            font-size: 1.15em;
+            color: #2d3eec;
+        }
+        .profile-3d {
+            display: block;
+            margin: 0 auto 18px auto;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            box-shadow: 0 8px 32px #2d3eec55, 0 0 0 8px #fff;
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+            background: #e3e8ff;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(0deg);}
+            50% { transform: translateY(-18px) rotateY(10deg);}
+        }
+        .resume-link {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 12px 28px;
+            background: linear-gradient(90deg, #2d3eec 60%, #f7d358 100%);
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 2px 8px #b3b3e6;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .resume-link:hover {
+            background: linear-gradient(90deg, #f7d358 60%, #2d3eec 100%);
+            color: #2d3eec;
+            transform: scale(1.07) rotateY(8deg);
+        }
+        #about p {
+            font-size: 1.15em;
+            color: #333;
+            text-align: center;
+        }
+        #contact h2 { color: #e74c3c; }
+        #contact p, #contact a {
+            font-size: 1.1em;
+            color: #333;
+            text-align: center;
+        }
+        #contact a {
+            color: #2d3eec;
+            text-decoration: underline;
+        }
+        footer {
+            background: linear-gradient(90deg, #15219e 60%, #2d3eec 100%);
+            color: #fff;
+            text-align: center;
+            padding: 22px 0;
+            margin-top: 50px;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            box-shadow: 0 -4px 24px #2d3eec44;
+        }
+        /* Animated background shapes */
+        .bg-shape {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .bg-shape1 {
+            top: -60px; left: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle at 40% 40%, #2d3eec 60%, transparent 100%);
+            border-radius: 50%;
+            animation: move1 8s infinite alternate;
+        }
+        .bg-shape2 {
+            bottom: -80px; right: -80px;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle at 60% 60%, #f7d358 60%, transparent 100%);
+            border-radius: 50%;
+            animation: move2 10s infinite alternate;
+        }
+        @keyframes move1 {
+            0% { transform: scale(1) translateY(0);}
+            100% { transform: scale(1.1) translateY(30px);}
+        }
+        @keyframes move2 {
+            0% { transform: scale(1) translateY(0);}
+            100% { transform: scale(1.08) translateY(-30px);}
+        }
+        /* Responsive */
+        @media (max-width: 700px) {
+            .container { padding: 20px 5vw; }
+            .skills, .projects { flex-direction: column; gap: 12px; }
+            .skill, .project { min-width: 80px; }
+            .profile-3d { width: 90px; height: 90px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shape bg-shape1"></div>
+    <div class="bg-shape bg-shape2"></div>
+    <header>
+        <h1>My Portfolio</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! I'm <b>samriddhi jain</b>, a passionate web developer. I love building beautiful and functional websites using HTML, CSS, and JavaScript. I enjoy learning new technologies and bringing creative ideas to life with code.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills">
+                <div class="skill" title="HTML5">HTML</div>
+                <div class="skill" title="CSS3">CSS</div>
+                <div class="skill" title="JavaScript ES6+">JavaScript</div>
+                <div class="skill" title="C++ Programming">C++</div>
+                <div class="skill" title="Python Programming">Python</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project">
+                    <b>Personal Portfolio</b><br>
+                    A responsive website to showcase my work and skills.
+                </div>
+                <div class="project">
+                    <b>Quiz App</b><br>
+                    An interactive quiz application using JavaScript.
+                </div>
+                <div class="project">
+                    <b>3D Animated Landing Page</b><br>
+                    A visually stunning landing page with 3D effects and smooth animations.
+                </div>
+            </div>
+        </section>
+
+        <section id="resume">
+            <h2>Resume</h2>
+            <a href="RESUME.png" class="resume-link" download>Download My Resume (PDF)</a>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            <p>Phone: +91-XXXXXXXX28</p>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2025 samriddhi jain. All rights reserved. | Made with <span style="color:#f7d358;">&#9733;</span> and creativity!
+    </footer>
+</body>
+</html>
